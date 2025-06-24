@@ -1,16 +1,95 @@
 ---
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Kollengo | AI-Powered Contract Management</title>
+		<meta name="description" content="Kollengo's AI-powered engine assembles bespoke, legally-sound contracts instantly. Move beyond manual templates—faster, smarter, seamless contract management." />
+		<link rel="canonical" href="https://kollengo.com/" />
+		<!-- Open Graph -->
+		<meta property="og:title" content="Kollengo | AI-Powered Contract Management" />
+		<meta property="og:description" content="Kollengo's AI-powered engine assembles bespoke, legally-sound contracts instantly. Move beyond manual templates—faster, smarter, seamless contract management." />
+		<meta property="og:image" content="https://kollengo.com/landingshot.png" />
+		<meta property="og:url" content="https://kollengo.com/" />
+		<meta property="og:type" content="website" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Kollengo | AI-Powered Contract Management" />
+		<meta name="twitter:description" content="Kollengo's AI-powered engine assembles bespoke, legally-sound contracts instantly. Move beyond manual templates—faster, smarter, seamless contract management." />
+		<meta name="twitter:image" content="https://kollengo.com/landingshot.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+		<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,600,700&display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-gray-50 text-gray-900 font-sans">
+		<div class="relative min-h-screen overflow-x-hidden">
+			<div class="absolute top-0 left-0 right-0 h-[800px] bg-hero-gradient -z-10"></div>
+
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+				<header class="flex justify-between items-center py-6">
+					<div class="flex items-center">
+						<img src="/kollengologo.png" alt="Kollengo Logo" class="h-50 w-auto absolute">
+						<!-- <span class="ml-3 text-2xl font-bold text-black">Kollengo</span> -->
+					</div>
+					<div class="flex items-center space-x-8">
+						<nav class="hidden md:flex items-center space-x-8">
+							<a href="/blog" class="text-gray-600 hover:text-black">Blog</a>
+							<a href="mailto:hello@kollengo.com" class="text-gray-600 hover:text-black">Contact</a>
+						</nav>
+						<button data-cal-link="pranav-velleth/30min" class="inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
+					</div>
+				</header>
+
+				<main class="mt-24 md:mt-32 text-center max-w-5xl mx-auto">
+					<h1 class="text-5xl md:text-7xl font-normal leading-tight font-serif">
+						Contract Management, <span class="italic">Reimagined.</span>
+					</h1>
+
+					<p class="mt-6 mx-auto max-w-2xl text-lg text-gray-600">
+						Move beyond manual templates. Kollengo's AI-powered engine assembles bespoke, legally-sound contracts on the fly, making your process faster, smarter, and completely seamless.
+					</p>
+
+					<div id="waitlist-form" class="mt-10 flex justify-center">
+						<form class="flex w-full max-w-md items-center space-x-2">
+							<input
+								id="email-input"
+								type="email"
+								placeholder="Enter your email"
+								class="flex-1 appearance-none rounded-full border border-gray-300 bg-white px-6 py-3 text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800"
+							/>
+							<button
+								type="submit"
+								class="inline-flex items-center justify-center rounded-full bg-black px-8 py-3 text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+							>
+								Join Waitlist
+							</button>
+						</form>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script type="text/javascript">
+			(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+		  Cal("init", "30min", {origin:"https://app.cal.com"});
+		  Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+		</script>
 	</body>
 </html>
+
+<style>
+	body {
+		font-family: 'General Sans', sans-serif;
+	}
+	h1, h2, h3 {
+		font-family: 'Playfair Display', serif;
+	}
+	.bg-hero-gradient {
+		background-image: radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120,119,198,0.3),hsla(0,0%,100%,0));
+	}
+</style>
