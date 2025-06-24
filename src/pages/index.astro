@@ -37,17 +37,33 @@ import '../styles/global.css';
 						<img src="/kollengologo.png" alt="Kollengo Logo" class="h-50 w-auto absolute">
 						<!-- <span class="ml-3 text-2xl font-bold text-black">Kollengo</span> -->
 					</div>
-					<div class="flex items-center space-x-8">
-						<nav class="hidden md:flex items-center space-x-8">
+					<!-- Desktop Menu -->
+					<div class="hidden md:flex items-center space-x-8">
+						<nav class="flex items-center space-x-8">
 							<a href="/blog" class="text-gray-600 hover:text-black">Blog</a>
 							<a href="mailto:hello@kollengo.com" class="text-gray-600 hover:text-black">Contact</a>
 						</nav>
 						<button data-cal-link="pranav-velleth/30min" class="inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
 					</div>
+					<!-- Mobile Menu Button -->
+					<div class="md:hidden">
+						<button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+						</button>
+					</div>
 				</header>
+				
+				<!-- Mobile Menu -->
+				<div id="mobile-menu" class="hidden md:hidden">
+						<nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+								<a href="/blog" class="block text-gray-600 hover:text-black py-2">Blog</a>
+								<a href="mailto:hello@kollengo.com" class="block text-gray-600 hover:text-black py-2">Contact</a>
+								<button data-cal-link="pranav-velleth/30min" class="mt-4 w-full inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
+						</nav>
+				</div>
 
 				<main class="mt-24 md:mt-32 text-center max-w-5xl mx-auto">
-					<h1 class="text-5xl md:text-7xl font-normal leading-tight font-serif">
+					<h1 class="text-4xl sm:text-5xl md:text-7xl font-normal leading-tight font-serif">
 						Contract Management, <span class="italic">Reimagined.</span>
 					</h1>
 
@@ -78,6 +94,16 @@ import '../styles/global.css';
 			(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 		  Cal("init", "30min", {origin:"https://app.cal.com"});
 		  Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+		</script>
+		<script>
+			const mobileMenuButton = document.getElementById('mobile-menu-button');
+			const mobileMenu = document.getElementById('mobile-menu');
+
+			if (mobileMenuButton && mobileMenu) {
+				mobileMenuButton.addEventListener('click', () => {
+						mobileMenu.classList.toggle('hidden');
+				});
+			}
 		</script>
 	</body>
 </html>
