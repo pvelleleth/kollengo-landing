@@ -43,7 +43,7 @@ import '../styles/global.css';
 							<a href="/blog" class="text-gray-600 hover:text-black">Blog</a>
 							<a href="mailto:hello@kollengo.com" class="text-gray-600 hover:text-black">Contact</a>
 						</nav>
-						<button data-cal-link="pranav-velleth/30min" class="inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
+						<button data-cal-link="pranav-velleleth/30min" class="inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
 					</div>
 					<!-- Mobile Menu Button -->
 					<div class="md:hidden">
@@ -58,7 +58,7 @@ import '../styles/global.css';
 						<nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
 								<a href="/blog" class="block text-gray-600 hover:text-black py-2">Blog</a>
 								<a href="mailto:hello@kollengo.com" class="block text-gray-600 hover:text-black py-2">Contact</a>
-								<button data-cal-link="pranav-velleth/30min" class="mt-4 w-full inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
+								<button data-cal-link="pranav-velleleth/30min" class="mt-4 w-full inline-block bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800">Book a call</button>
 						</nav>
 				</div>
 
@@ -72,12 +72,13 @@ import '../styles/global.css';
 					</p>
 
 					<div id="waitlist-form" class="mt-10 flex justify-center">
-						<form class="flex w-full max-w-md items-center space-x-2">
+						<form id="waitlist-form-element" class="flex w-full max-w-md items-center space-x-2">
 							<input
 								id="email-input"
 								type="email"
 								placeholder="Enter your email"
 								class="flex-1 appearance-none rounded-full border border-gray-300 bg-white px-6 py-3 text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800"
+								required
 							/>
 							<button
 								type="submit"
@@ -87,6 +88,7 @@ import '../styles/global.css';
 							</button>
 						</form>
 					</div>
+					<div id="waitlist-feedback" class="mt-4 text-center text-base"></div>
 				</main>
 			</div>
 		</div>
@@ -102,6 +104,43 @@ import '../styles/global.css';
 			if (mobileMenuButton && mobileMenu) {
 				mobileMenuButton.addEventListener('click', () => {
 						mobileMenu.classList.toggle('hidden');
+				});
+			}
+		</script>
+		<script>
+			// Waitlist form handler
+			const waitlistForm = document.getElementById('waitlist-form-element');
+			const emailInput = document.getElementById('email-input');
+			const feedbackDiv = document.getElementById('waitlist-feedback');
+
+			if (waitlistForm && emailInput && feedbackDiv) {
+				waitlistForm.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					feedbackDiv.textContent = '';
+					const email = (emailInput as HTMLInputElement).value.trim();
+					if (!email) {
+						feedbackDiv.textContent = 'Please enter a valid email.';
+						feedbackDiv.style.color = 'red';
+						return;
+					}
+					try {
+						const res = await fetch('/api/waitlist', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ email })
+						});
+						if (res.ok) {
+							feedbackDiv.textContent = 'You have been added to the waitlist!';
+							feedbackDiv.style.color = 'green';
+							(waitlistForm as HTMLFormElement).reset();
+						} else {
+							feedbackDiv.textContent = 'There was an error. Please try again.';
+							feedbackDiv.style.color = 'red';
+						}
+					} catch (err) {
+						feedbackDiv.textContent = 'Network error. Please try again.';
+						feedbackDiv.style.color = 'red';
+					}
 				});
 			}
 		</script>
